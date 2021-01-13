@@ -51,6 +51,7 @@ export default class extends Component {
     Animated.timing(this.state.runAnim, {
       toValue: inputRange.length,
       duration: this.props.duration,
+      useNativeDriver: true,
     }).start(() => {
       this.props.animateEnd(data);
     });
