@@ -57,33 +57,9 @@ export default class extends Component {
     });
   }
   getPaths(position) {
-    const [startX, startY, endX, endY] = position;
-    const {curvature} = this.props,
-      speed = 500; //166.67
-    let diffX = endX - startX,
-      diffY = endY - startY;
-    let b = (diffY - curvature * diffX * diffX) / diffX,
-      start_x = 0,
-      rate = diffX > 0 ? 1 : -1,
-      inputRange = [],
-      outputX = [],
-      outputY = [];
-    let step = () => {
-      let tangent = 2 * curvature * start_x + b;
-      start_x = start_x + rate * Math.sqrt(speed / (tangent * tangent + 1));
-      if ((rate === 1 && start_x > diffX) || (rate === -1 && start_x < diffX)) {
-        start_x = diffX;
-      }
-      let x = start_x,
-        y = curvature * x * x + b * x;
-      inputRange.push(outputX.length);
-      outputX.push(x);
-      outputY.push(y);
-      if (start_x !== diffX) {
-        step();
-      }
-    };
-    step();
+    const inputRange=[0, 1, 2, 3, 4, 5, 6]
+    const outputX=[-44, -88, -132, -176, -220, -264, -300.46946742441236]
+    const outputY=[-34.68190910006727, -34.51581820013455, 0.49827269979817856, 70.3603635997309, 175.07045449966358, 314.62854539959636, 456.7135904851068]
     return {inputRange, outputX, outputY};
   }
   render() {
